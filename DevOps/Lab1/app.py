@@ -3,6 +3,7 @@ import os
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
 from marshmallow import ValidationError
 
 from db import db
@@ -20,6 +21,7 @@ app.config["PROPAGATE_EXCEPTIONS"] = True
 app.secret_key = "12345678"
 api = Api(app)
 jwt = JWTManager(app)
+migrate = Migrate(app, db)
 
 
 @app.before_first_request
@@ -37,7 +39,8 @@ api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserList, "/users")
 api.add_resource(UserLogin, "/login")
 
+db.init_app(app)
+ma.init_app(app)
+
 if __name__ == "__main__":
-    db.init_app(app)
-    ma.init_app(app)
     app.run(port=5000, debug=True)

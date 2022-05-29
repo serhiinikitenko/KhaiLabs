@@ -9,6 +9,7 @@ Flask-JWT-Extended = "*"
 Flask-RESTful = "*"
 Flask-SQLAlchemy = "*"
 flask-marshmallow = "*"
+flask-migrate = "*"
 marshmallow-sqlalchemy = "*"
 marshmallow = "*"
 
