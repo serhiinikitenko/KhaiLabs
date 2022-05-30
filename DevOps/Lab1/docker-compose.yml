@@ -7,7 +7,7 @@ services:
     environment:
       DATABASE_URI: "postgresql://postgres:postgres@postgres:5432/mydb"
     depends_on:
-      - db
+      - postgres
   postgres:
     image: postgres
     environment:
@@ -15,5 +15,5 @@ services:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB: "mydb"
       PGDATA: /data/postgres
-#    volumes:
-#      - postgres:/data/postgres
+#   volumes:
+#     - postgres:/data/postgres
