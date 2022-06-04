@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+        stage('Test app') {
             agent {
                 docker {
                     image 'python:3.8-buster'
@@ -17,6 +17,19 @@ pipeline {
                     sh 'pip install pipenv'
                     sh 'pipenv install --dev'
                     sh 'pipenv run pytest tests'
+                }
+            }
+        }
+        stage('Build image') {
+            steps {
+                dir(path: 'DevOps/Lab1') {
+                    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+
+                        def customImage = docker.build("web-app:${env.BUILD_ID}")
+
+                        /* Push the container to the custom Registry */
+                        // customImage.push()
+                    }
                 }
             }
         }
