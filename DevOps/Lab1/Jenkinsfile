@@ -23,7 +23,7 @@ pipeline {
         stage('Build image') {
             steps {
                 dir(path: 'DevOps/Lab1') {
-                    sh 'docker build -t web-app:latest'
+                    sh 'docker build -t web-app:latest .'
                 }
             }
         }
