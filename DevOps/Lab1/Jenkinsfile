@@ -13,8 +13,10 @@ pipeline {
                 }
             }
             steps {
-                sh 'pipenv install --dev'
-                sh 'pipenv run pytest tests'
+                dir(path: 'DevOps/Lab1') {
+                    sh 'pipenv install --dev'
+                    sh 'pipenv run pytest tests'
+                }
             }
         }
     }
