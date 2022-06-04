@@ -23,13 +23,7 @@ pipeline {
         stage('Build image') {
             steps {
                 dir(path: 'DevOps/Lab1') {
-                    docker.withRegistry('https://registry.example.com', 'credentials-id') {
-
-                        def customImage = docker.build("web-app:${env.BUILD_ID}")
-
-                        /* Push the container to the custom Registry */
-                        // customImage.push()
-                    }
+                    sh 'docker build -t web-app:latest'
                 }
             }
         }
