@@ -1,15 +1,11 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('Test app') {
             agent {
                 docker {
                     image 'python:3.8-buster'
-                    // Run the container on the node specified at the
-                    // top-level of the Pipeline, in the same workspace,
-                    // rather than on a new node entirely:
-                    reuseNode true
                 }
             }
             steps {
@@ -24,6 +20,27 @@ pipeline {
             steps {
                 dir(path: 'DevOps/Lab1') {
                     sh 'docker build -t web-app:latest .'
+                }
+            }
+        }
+        stage('Deploy service') {
+            steps {
+                dir(path: 'DevOps/Lab1') {
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+        stage('Destroy service') {
+            steps {
+                dir(path: 'DevOps/Lab1') {
+                    sh 'docker-compose down'
+                }
+            }
+        }
+        stage('Push image') {
+            steps {
+                dir(path: 'DevOps/Lab1') {
+                    sh 'true'
                 }
             }
         }
