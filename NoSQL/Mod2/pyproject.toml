@@ -14,6 +14,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pymongo = ""
 
 
 [tool.poetry.dev-dependencies]
