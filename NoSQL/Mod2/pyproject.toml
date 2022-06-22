@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "mongodbcli"
+version = "0.1.0"
+description = "Just a simpla CLI tool for MongoDB."
+homepage = "https://github.com/serhiinikitenko/KhaiLabs/NoSQL/Mod2"
+authors = ["Serhii Nikitenko"]
+license = "Apache-2.0"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Utilities"
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[tool.poetry.dev-dependencies]
+pylint = ""
+pytest = ""
+
+[tool.poetry.scripts]
+mdb = 'mongodb:run'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
